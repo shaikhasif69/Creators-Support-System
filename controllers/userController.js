@@ -34,14 +34,10 @@ res.redirect('/')
     })
   }
 
-
-
-
-
   exports.register = function(req, res) {
     let user = new User(req.body)
     user.register().then(() => {
-      req.session.user = {username: user.data.username, _id: user.data._id}
+      req.session.user = {username: user.data.username, _id: user.data._id, role: user.data.role}
       req.session.save(function() {
         res.redirect('/')
       })
@@ -69,14 +65,21 @@ res.redirect('/')
           role: req.session.user.role //remove this later
         })
       }
-      if(req.session.user.role =="manager"){
+     else if(req.session.user.role =="manager"){
         res.render("dashboard-manager", {
           username: req.session.user.username,
           role: req.session.user.role //remove this later
-        })
-      }
+        })}
+        else{
+          res.send("Something else")
+        }
     } else {
+      // res.send("hello")
      res.render('homepage-guest', {regErrors: req.flash('regErrors')})
       // res.render('homepage-guest')
     }
   }
+
+  // exports.home = async function(req, res){
+  //   res.render('homepage-guest', {regErrors: req.flash('regErrors')})
+  // }

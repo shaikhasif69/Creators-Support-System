@@ -12,6 +12,12 @@ exports.mustBeLoggedIn = function(req, res, next) {
     }
   }
 
+  exports.signin = function(req, res){
+res.render('signin')
+  }
+  exports.signUp = function(req, res){
+res.redirect('/')
+  }
 
   exports.login = function(req, res) {
     let user = new User(req.body)
@@ -23,7 +29,7 @@ exports.mustBeLoggedIn = function(req, res, next) {
     }).catch(function(e) {
       req.flash('errors', e)
       req.session.save(function() {
-        res.redirect('/')
+        res.redirect('/signin')
       })
     })
   }
@@ -64,7 +70,7 @@ exports.mustBeLoggedIn = function(req, res, next) {
         })
       }
       if(req.session.user.role =="manager"){
-        res.render("managerPage", {
+        res.render("dashboard-manager", {
           username: req.session.user.username,
           role: req.session.user.role //remove this later
         })

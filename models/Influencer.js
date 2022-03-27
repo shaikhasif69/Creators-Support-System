@@ -1,18 +1,17 @@
-//User.js == Influencer.js
-
 const bcrypt = require("bcryptjs")
 const influencersCollection = require('../db').db().collection("influencers")
 const validator = require("validator")
-const md5 = require('md5')
+
+// const md5 = require('md5')
 
 
-let User = function(data) {
+let Influencer = function(data) {
     this.data = data
     this.errors = []
   }
 
-  
-User.prototype.cleanUp = function() {
+
+Influencer.prototype.cleanUp = function() {
     if (typeof(this.data.username) != "string") {this.data.username = ""}
     if (typeof(this.data.email) != "string") {this.data.email = ""}
     if (typeof(this.data.password) != "string") {this.data.password = ""}
@@ -21,14 +20,14 @@ User.prototype.cleanUp = function() {
     this.data = {
       username: this.data.username.trim().toLowerCase(),
       email: this.data.email.trim().toLowerCase(),
-      password: this.data.password,
-
+      password: this.data.password
       //The below property is for testing and can be removed in the next update.
-      role: "influencer"
+      // role: "influencer"
+      //campaihn active:
     }
   }
 
-  User.prototype.validate = function() {
+  Influencer.prototype.validate = function() {
     return new Promise(async (resolve, reject) => {
       if (this.data.username == "") {this.errors.push("You must provide a username.")}
       if (this.data.username != "" && !validator.isAlphanumeric(this.data.username)) {this.errors.push("Username can only contain letters and numbers.")}
@@ -55,9 +54,11 @@ User.prototype.cleanUp = function() {
   }
 
 
-  User.prototype.login = function() {
+
+  Influencer.prototype.login = function() {
     return new Promise((resolve, reject) => {
       this.cleanUp()
+
       influencersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
         if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
           this.data = attemptedUser
@@ -72,7 +73,7 @@ User.prototype.cleanUp = function() {
   }
 
 
-  User.prototype.register = function() {
+  Influencer.prototype.register = function() {
     return new Promise(async (resolve, reject) => {
       // Step #1: Validate user data
       this.cleanUp()
@@ -92,4 +93,4 @@ User.prototype.cleanUp = function() {
     })
   }
 
-module.exports = User
+module.exports = Influencer

@@ -1,7 +1,5 @@
-//User.js == Influencer.js
-
 const bcrypt = require("bcryptjs")
-const influencersCollection = require('../db').db().collection("influencers")
+const usersCollection = require('../db').db().collection("users")
 const validator = require("validator")
 const md5 = require('md5')
 
@@ -24,7 +22,7 @@ User.prototype.cleanUp = function() {
       password: this.data.password,
 
       //The below property is for testing and can be removed in the next update.
-      role: "influencer"
+      role: this.data.role
     }
   }
 
@@ -41,13 +39,13 @@ User.prototype.cleanUp = function() {
     
       // Only if username is valid then check to see if it's already taken
       if (this.data.username.length > 2 && this.data.username.length < 31 && validator.isAlphanumeric(this.data.username)) {
-        let usernameExists = await influencersCollection.findOne({username: this.data.username})
+        let usernameExists = await usersCollection.findOne({username: this.data.username})
         if (usernameExists) {this.errors.push("That username is already taken.")}
       }
     
       // Only if email is valid then check to see if it's already taken
       if (validator.isEmail(this.data.email)) {
-        let emailExists = await influencersCollection.findOne({email: this.data.email})
+        let emailExists = await usersCollection.findOne({email: this.data.email})
         if (emailExists) {this.errors.push("That email is already being used.")}
       }
       resolve()
@@ -58,7 +56,7 @@ User.prototype.cleanUp = function() {
   User.prototype.login = function() {
     return new Promise((resolve, reject) => {
       this.cleanUp()
-      influencersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
+      usersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
         if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
           this.data = attemptedUser
           resolve("Congrats!")
@@ -84,7 +82,7 @@ User.prototype.cleanUp = function() {
         // hash user password
         let salt = bcrypt.genSaltSync(10)
         this.data.password = bcrypt.hashSync(this.data.password, salt)
-        await influencersCollection.insertOne(this.data)
+        await usersCollection.insertOne(this.data)
         resolve()
       } else {
         reject(this.errors)

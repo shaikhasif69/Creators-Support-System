@@ -19,6 +19,12 @@ router.get('/add', campaignController.addCampaign)
 
 
 //ticket related routes
-router.post('/raise-ticket/:id', ticketController.raiseTicket)
-router.get('/raise-ticket-form/:id', ticketController.displayTicketForm)
+router.post('/raise-ticket/:id',  ticketController.raiseTicket)
+router.get('/raise-ticket-form/:id',userController.mustBeInfluencer, ticketController.displayTicketForm)
+
+//frontend manager related
+router.get('/idk', userController.pageLoad)
+router.get('/dashboard', userController.displayDashboard)
+router.get('/answer-ticket/:id', userController.mustBeManager ,ticketController.openReplyForm)
+
 module.exports = router

@@ -1,6 +1,4 @@
 /********** Template CSS **********/
-
-
 :root {
     --primary: #009CFF;
     --light: #F3F6F9;
@@ -24,11 +22,11 @@
     z-index: 99999;
 }
 
-/* #spinner.show {
+#spinner.show {
     transition: opacity .5s ease-out, visibility 0s linear 0s;
     visibility: visible;
     opacity: 1;
-} */
+}
 
 
 /*** Button ***/
@@ -176,7 +174,7 @@
 }
 
 .content .navbar .navbar-nav .nav-link {
-    margin-left: 25px;
+    margin-left: 35px;
     padding: 12px 0;
     color: var(--dark);
     outline: none;
@@ -196,6 +194,9 @@
     justify-content: center;
     background: #FFFFFF;
     border-radius: 40px;
+}
+.navbar-nav{
+    margin: -5px;
 }
 
 .content .navbar .dropdown-toggle::after {

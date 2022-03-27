@@ -111,4 +111,14 @@ User.prototype.cleanUp = function() {
     })
   }
 
+
+
+
+  User.prototype.findInfluencerById = async function(id){
+   let influencer = await influencersCollection.findOne({_id: id})
+   console.log(influencer)
+   return influencer
+    
+  }
+
 module.exports = User

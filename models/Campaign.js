@@ -47,4 +47,47 @@ Campaign.prototype.findCampaignById = async function(Id){
   return campaign[0]
 }
 
+
+Campaign.findByCampaignId = function(id){
+
+
+  return new Promise(async function(resolve,reject){
+    //if statement goes here
+    if(typeof(id)!="string" || !ObjectID.isValid(id) ){
+      reject()
+      return
+    }
+    let prospects = await sittingCollection.aggregate([
+      {$match: {clientID: new ObjectID(id) }},
+      {$lookup: {from: "prospect", localField: "clientID", foreignField: "_id", as: "sessionDocument"}},
+      {$project: {
+        sessionDate: 1,
+        clientName:1,
+        sessionType:1,
+        standardProcess:1,
+        systProcess:1,
+        standardProcess:1,
+        timeWasted:1,
+        paymentMethod:1,
+        notes:1,
+        totalHours:1,
+        billingAmount:1,
+        createdDate:1,
+        //clientID: {}
+         
+
+      }}
+    
+    ]).toArray()
+    //if(prospects.length){
+      console.log(prospects)
+      resolve(prospects)
+   // }
+   // else{
+   // console.log(id)
+
+   // }
+  })
+}
+
 module.exports = Campaign

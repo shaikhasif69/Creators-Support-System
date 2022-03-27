@@ -28,16 +28,53 @@ let Ticket = function(data, campaignId, influencerId) {
 
   Ticket.prototype.raiseTicket = async function(){
     this.cleanUp()
-    console.log(this.data)
+    // console.log(this.data)
  await ticketsCollection.insertOne(this.data)
   }
 
-  Ticket.prototype.editTicket = function(){
+  Ticket.prototype.editTicket = function(){}
 
+  Ticket.prototype.DeleteTicket = function(){}
+
+  Ticket.prototype.getAllTickets=async function(){
+let allTickets = await ticketsCollection.find().toArray()
+return allTickets
   }
 
-  Ticket.prototype.DeleteTicket = function(){
 
-  }
+// Ticket.prototype.findInfluencerById = async function(id){
+
+// }
+
+
+//   Ticket.prototype.lookUP= async function(){
+//     try{
+// let influencer = await ticketsCollection.aggregate([
+
+//         {$lookup: {from: "tickets", localField: "influencerId", foreignField: "username", as: "userDoc"}},
+//         {$project: {
+//           username: {$arrayElemAt: ["$userDoc.username", 0]},
+//         }}
+//   ]).toArray()
+
+//   influencer.map(function(inf){
+//     return inf
+//   })
+//   console.log("Test"+influencer)
+  
+//   } 
+
+//   catch(e){
+//     console.log("Model LOOkup:" + e)
+//   }
+//   }
+
+
+Ticket.prototype.findTicketbyCampaignId = async function(id){
+  console.log(id)
+  let tickets = await ticketsCollection.find({campaignId: id}).toArray()
+  // console.log(tickets[0])
+  return tickets
+    }
 
   module.exports = Ticket

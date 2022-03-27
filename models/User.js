@@ -74,10 +74,7 @@ User.prototype.cleanUp = function() {
           reject("Please try again later.")
         })
       } else{
-
-
-
-managersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
+        managersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
         if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
           this.data = attemptedUser
           resolve("Congrats!")

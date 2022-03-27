@@ -188,30 +188,13 @@
                     <div class="col-sm-12 col-xl-6">
                         <div class="bg-light rounded h-100 p-4">
                             <h6 class="mb-4">Basic Alerts</h6>
-                            <div class="alert alert-primary" role="alert">
-                                A simple primary alert—check it out!
-                            </div>
-                            <div class="alert alert-secondary" role="alert">
-                                A simple secondary alert—check it out!
-                            </div>
-                            <div class="alert alert-success" role="alert">
-                                A simple success alert—check it out!
-                            </div>
-                            <div class="alert alert-danger" role="alert">
-                                A simple danger alert—check it out!
-                            </div>
-                            <div class="alert alert-warning" role="alert">
-                                A simple warning alert—check it out!
-                            </div>
-                            <div class="alert alert-info" role="alert">
-                                A simple info alert—check it out!
-                            </div>
-                            <div class="alert alert-light" role="alert">
-                                A simple light alert—check it out!
-                            </div>
-                            <div class="alert alert-dark mb-0" role="alert">
-                                A simple dark alert—check it out!
-                            </div>
+                            <%campaigns.forEach(function(campaign){ %>
+                                <div class="alert alert-primary" role="alert">
+                                    <%=campaign.campaignName%>
+                                </div>
+                           <% }) %>
+                           
+            
                         </div>
                     </div>
                     <div class="col-sm-12 col-xl-6">

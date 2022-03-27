@@ -1,5 +1,31 @@
 <h2>Hi, <%= username%> you are an <%=role%>!!</h2>
 
+<h2>All Campaigns</h2>
+
+<form action="/raise-ticket" method="POST">
+
+    <input type="text" name="title" id="" placeholder="title">
+    <input type="text" name="body" id="" placeholder="body">
+
+    <label for="">Your Issue is about</label>
+    <select id="cars" name="cars">
+        <option value="payment">Payment</option>
+        <option value="something">Something</option>
+        
+      </select>
+
+<button>Raise Ticket</button>
+</form>
+
+<%campaigns.forEach(function(campaign){ %>
+    <div class="alert alert-primary" role="alert">
+        <%=campaign.campaignName%>
+    </div>
+<% }) %>
+
+
 <form action="/logout" method="post">
     <button>Logout</button>
 </form>
+
+

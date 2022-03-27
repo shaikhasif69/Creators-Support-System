@@ -1,6 +1,7 @@
 //Require Models
 const User = require('../models/User')
-
+const Campaign = require('../models/Campaign')
+ 
 exports.mustBeLoggedIn = function(req, res, next) {
     if (req.session.user) {
       next()
@@ -64,15 +65,27 @@ res.redirect('/')
     
     if (req.session.user) {
       if(req.session.user.role =="influencer"){
+
+
+let campain = new Campaign()
+let campaigns = await campain.getAllCampaigns()
         res.render("influencerPage", {
           username: req.session.user.username,
-          role: req.session.user.role //remove this later
+          role: req.session.user.role, //remove this later
+          campaigns: campaigns
         })
       }
      else if(req.session.user.role =="manager"){
+
+console.log(req.session.user._id)
+let campaign = new Campaign()
+let campaigns = await campaign.getCampaigns(req.session.user._id)
+console.log("camp:" + campaigns)
+
         res.render("dashboard-manager", {
           username: req.session.user.username,
-          role: req.session.user.role //remove this later
+          role: req.session.user.role, //remove this later
+          campaigns: campaigns
         })}
         else{
           res.send("Something else")

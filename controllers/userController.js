@@ -21,7 +21,9 @@ res.redirect('/')
 
   exports.login = function(req, res) {
     let user = new User(req.body)
-    user.login().then(function(result) {
+
+
+    user.login(req.body.role).then(function(result) {
       req.session.user = {username: user.data.username, _id: user.data._id, role: user.data.role}
       req.session.save(function() {
         res.redirect('/')
@@ -58,6 +60,8 @@ res.redirect('/')
   }
 
   exports.home = async function(req, res) {
+
+    
     if (req.session.user) {
       if(req.session.user.role =="influencer"){
         res.render("influencerPage", {

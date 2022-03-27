@@ -2,6 +2,7 @@
 
 const bcrypt = require("bcryptjs")
 const influencersCollection = require('../db').db().collection("influencers")
+const managersCollection = require('../db').db().collection("managers")
 const validator = require("validator")
 const md5 = require('md5')
 
@@ -19,7 +20,7 @@ User.prototype.cleanUp = function() {
   
     // get rid of any bogus properties
     this.data = {
-      username: this.data.username.trim().toLowerCase(),
+      username: this.data.username.trim(),
       email: this.data.email.trim().toLowerCase(),
       password: this.data.password,
 
@@ -55,10 +56,28 @@ User.prototype.cleanUp = function() {
   }
 
 
-  User.prototype.login = function() {
+
+  User.prototype.login = function(loginRole) {
     return new Promise((resolve, reject) => {
-      this.cleanUp()
-      influencersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
+       this.cleanUp()
+      if(loginRole=="influencer"){
+       
+
+        influencersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
+          if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
+            this.data = attemptedUser
+            resolve("Congrats!")
+          } else {
+            reject("Invalid username / password.")
+          }
+        }).catch(function() {
+          reject("Please try again later.")
+        })
+      } else{
+
+
+
+managersCollection.findOne({username: this.data.username}).then((attemptedUser) => {
         if (attemptedUser && bcrypt.compareSync(this.data.password, attemptedUser.password)) {
           this.data = attemptedUser
           resolve("Congrats!")
@@ -68,6 +87,9 @@ User.prototype.cleanUp = function() {
       }).catch(function() {
         reject("Please try again later.")
       })
+
+    }
+
     })
   }
 

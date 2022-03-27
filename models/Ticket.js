@@ -1,9 +1,12 @@
+const { ObjectID } = require('mongodb')
 
 const ticketsCollection = require('../db').db().collection("tickets")
 
-let Ticket = function(data) {
+let Ticket = function(data, campaignId, influencerId) {
     this.data = data
     this.errors = []
+    this.campaignId = new ObjectID(campaignId)
+    this.influencerId = new ObjectID(influencerId)
   }
 
   Ticket.prototype.cleanUp = function(){
@@ -11,18 +14,22 @@ let Ticket = function(data) {
     if (typeof(this.data.body) != "string") {this.data.body = ""}
     
     this.data = {
-        ticketTitle: this.title,
-        ticketBody : this.body,
+        ticketTitle: this.data.title,
+        ticketBody : this.data.body,
         campaignId : this.campaignId, //has to be thought ho to take in
         raisedDate: new Date(),
         influencerId: this.influencerId,  //has to be thought ho to take in
+        ticketStatus: "Open",
+        category: this.data.category
         // issueImg: ,
     }
   }
 
 
-  Ticket.prototype.addTicket = function(){
-
+  Ticket.prototype.raiseTicket = async function(){
+    this.cleanUp()
+    console.log(this.data)
+ await ticketsCollection.insertOne(this.data)
   }
 
   Ticket.prototype.editTicket = function(){

@@ -41,4 +41,10 @@ Campaign.prototype.getAllCampaigns = async function(managerId){
   // console.log(campaigns)
   return campaigns
 }
+
+Campaign.prototype.findCampaignById = async function(Id){
+  let campaign = await campaignsCollection.find({_id: new ObjectID(Id)}).toArray()
+  return campaign[0]
+}
+
 module.exports = Campaign

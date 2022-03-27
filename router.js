@@ -3,7 +3,7 @@ const router = express.Router()
 const Ticket = require('./models/Ticket')
 const userController = require('./controllers/userController')
 const campaignController = require('./controllers/campaignController')
-const ticketController = require('./controllers/campaignController')
+const ticketController = require('./controllers/ticketController')
 
 
 router.get('/', userController.home)
@@ -19,5 +19,6 @@ router.get('/add', campaignController.addCampaign)
 
 
 //ticket related routes
-router.post('/raise-ticket', ticketController)
+router.post('/raise-ticket/:id', ticketController.raiseTicket)
+router.get('/raise-ticket-form/:id', ticketController.displayTicketForm)
 module.exports = router

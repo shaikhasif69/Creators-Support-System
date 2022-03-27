@@ -1,8 +1,11 @@
+<!-- <%- include('includes/flash') %> -->
+
+
 <h2>Hi, <%= username%> you are an <%=role%>!!</h2>
 
 <h2>All Campaigns</h2>
 
-<form action="/raise-ticket" method="POST">
+<!-- <form action="/raise-ticket" method="POST">
 
     <input type="text" name="title" id="" placeholder="title">
     <input type="text" name="body" id="" placeholder="body">
@@ -15,11 +18,11 @@
       </select>
 
 <button>Raise Ticket</button>
-</form>
+</form> -->
 
 <%campaigns.forEach(function(campaign){ %>
     <div class="alert alert-primary" role="alert">
-        <%=campaign.campaignName%>
+        <%=campaign.campaignName%> <a href="/raise-ticket-form/<%=campaign._id%>">Raise Ticket</a>
     </div>
 <% }) %>
 

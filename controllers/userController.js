@@ -61,12 +61,8 @@ res.redirect('/')
   }
 
   exports.home = async function(req, res) {
-
-    
     if (req.session.user) {
       if(req.session.user.role =="influencer"){
-
-
 let campain = new Campaign()
 let campaigns = await campain.getAllCampaigns()
         res.render("influencerPage", {

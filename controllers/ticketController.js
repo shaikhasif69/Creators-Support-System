@@ -6,7 +6,7 @@ exports.raiseTicket = async function(req, res){
 let ticket = new Ticket(req.body, req.params.id, req.session.user._id)
 console.log("Hi:" + req.params.id)
 await ticket.raiseTicket()
-req.flash("errors", "You must be logged in to perform that action.")
+req.flash("success", "Ticket Successfully.")
 req.session.save(function() {
   res.redirect('/')
 })

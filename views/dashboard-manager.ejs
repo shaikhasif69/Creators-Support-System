@@ -1,5 +1,6 @@
 <%-include('includes/sidebar')%>
 
+<%- include('includes/flash') %>
 
         <!-- Content Start -->
        
@@ -75,22 +76,24 @@
                             </thead>
                             <tbody>
                                 <% let counter=1%>
-
                              <%   if(tickets.length) {%>
-<%tickets[0].forEach(function(ticket){ %>
-   
-    <tr>
-        <td><%=counter%></td>
-        <td><%=ticket.ticketTitle%></td>
-        <td><%= ticket.raisedDate.getDate()%>-<%=ticket.raisedDate.getMonth() +1%>-<%=ticket.raisedDate.getFullYear()%></td>
-        <td>Kush</td>
-        <td>Campaign name</td>
-        <td><%=ticket.ticketStatus%></td>
-        <td><a class="btn btn-sm btn-primary" href="/answer-ticket/<%=ticket._id%>">Reply</a></td>
-    </tr>
-    <% counter++ %>
-<% }) %>
-                             <%}%>
+                           <%     tickets.forEach(function (ticketArr){ %>
+                                    <%ticketArr.forEach(function(ticket){ %>
+                                        <tr>
+                                            <td><%=counter%></td>
+                                            <td><%=ticket.ticketTitle%></td>
+                                            <td><%= ticket.raisedDate.getDate()%>-<%=ticket.raisedDate.getMonth() +1%>-<%=ticket.raisedDate.getFullYear()%></td>
+                                            <td>Kush</td>
+                                            <td>Campaign name</td>
+                                            <td><%=ticket.ticketStatus%></td>
+                                            <td><a class="btn btn-sm btn-primary" href="/answer-ticket/<%=ticket._id%>">Reply</a></td>
+                                        </tr>
+                                        <% counter++ %>
+                                    <% }) %>
+                                   <%})%>
+
+                            <%    } %>
+
 
                             </tbody>
                         </table>

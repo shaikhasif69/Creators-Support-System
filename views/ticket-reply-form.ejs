@@ -5,18 +5,19 @@
             <div class="container-fluid pt-3 px-3">
                 
               <!-- Form Start -->
+             
               <div class="container-fluid pt-1 px-1">
                   <div class="bg-light rounded-top p-4">
               <form class="row g-3">
                   <div class="col-md-6">
                       <!--as the manager click on reply button all the information of influencer will be pre written on this page-->
                     <label for="inputEmail4" class="form-label"> Name</label>
-                    <input type="text" class="form-control" id="inputEmail4" placeholder=" Kush ">
+                    <input type="text" class="form-control" id="inputEmail4" value = "<%=ticket.ticketBody%>">
                   </div>
                   <div class="col-md-6">
                     <label for="inputPassword4" class="form-label" >Influencer Id</label>
                    <!--I am writing here the information wrote by influencer will be displayed-->
-                    <input type="text" class="form-control" id="inputPassword4" placeholder="8295107223">
+                    <input type="text" class="form-control" id="inputPassword4" placeholder="<%=ticket.ticketTitle%>">
                   </div>
                   <div class="col-md-6">
                       <label for="inputEmail4" class="form-label">G-mail Id</label>
@@ -75,13 +76,19 @@
                       </div>
                   </div>
                   <div class="col-12">
-                      <label for="exampleFormControlTextarea1">Reply</label>
+                  </form>
+                    <form action="/answer-ticket/<%=ticket._id%>" method="POST">
+                      <label for="exampleFormControlTextarea1">Answer</label>
                       <!--decription will be wrote in here by influencer! manager can read it but cannot edit it-->
-                      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Write your respone here"></textarea>
-                      <button type="submit" class="btn btn-primary  float-right " >Submit</button></div>
+                      <textarea name = "reply" class="form-control" id="exampleFormControlTextarea1" rows="5" placeholder="Write your respone here"></textarea>
+                     
+                      <button  class="btn btn-primary  float-right" >Answer</button>
+                    </form>
+                    </div>
+                    
                   </div>          
                   </div>        
-                </form>
+               
               <!-- Blank End -->
   </body>
 </html>

@@ -28,5 +28,12 @@ exports.displayTicketForm= async function(req,res){
 
 
 exports.openReplyForm = async function(req, res){
-    res.render('ticket-reply-form')
+
+    let ticket = new Ticket()
+    let ticketData= await ticket.findTicketById(req.params.id)
+console.log(ticketData)
+
+    res.render('ticket-reply-form',{
+        ticket: ticketData
+    })
 }

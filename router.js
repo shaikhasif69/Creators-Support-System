@@ -4,6 +4,7 @@ const Ticket = require('./models/Ticket')
 const userController = require('./controllers/userController')
 const campaignController = require('./controllers/campaignController')
 const ticketController = require('./controllers/ticketController')
+const answerController = require('./controllers/answerController')
 
 
 router.get('/', userController.home)
@@ -26,5 +27,6 @@ router.get('/raise-ticket-form/:id',userController.mustBeInfluencer, ticketContr
 router.get('/idk', userController.pageLoad)
 router.get('/dashboard', userController.displayDashboard)
 router.get('/answer-ticket/:id', userController.mustBeManager ,ticketController.openReplyForm)
+router.post('/answer-ticket/:id', userController.mustBeManager ,answerController.saveAnswer)
 
 module.exports = router

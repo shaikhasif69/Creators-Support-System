@@ -3,6 +3,7 @@ const User = require('../models/User')
 const Campaign = require('../models/Campaign')
 const Ticket = require('../models/Ticket')
 const { ObjectID } = require('mongodb')
+const Answer = require('../models/Answer')
  
 exports.mustBeManager = function(req, res, next) {
     if (req.session.user.role == "manager") {
@@ -78,10 +79,17 @@ res.redirect('/')
       if(req.session.user.role =="influencer"){
 let campain = new Campaign()
 let campaigns = await campain.getAllCampaigns()
+
+// let answer = new Answer()
+// let answers =  await answer.getAllAnswers
+
+let tickets = new Ticket()
+let influencerTickets = tickets.getTicketsByInfluencerId(req.session.user._id)
         res.render("influencer-dashboard", {
           username: req.session.user.username,
           role: req.session.user.role, //remove this later
-          campaigns: campaigns
+          campaigns: campaigns,
+          tickets: influencerTickets 
         })
       }
      else if(req.session.user.role =="manager"){
@@ -99,70 +107,8 @@ let tickets = await Promise.all(campaigns.map(async (campaign)=>{
   return await ticket.findTicketbyCampaignId(campaign._id)
 }))
 
-console.log(tickets)
-// let arr = []
-// // let campaigns = ['green']
+// console.log(tickets)
 
-//  let arr2 = campaigns.map(async (elem)=>{
-//   console.log(elem._id)
-//   let t = await ticket.findTicketbyCampaignId(elem._id)
-//   return  t
-// // console.log(arr)
-// })
-
-// console.log(arr2)
-// console.log(arr)
-
-
-
-// console.log("camp:" + campaigns.to )
-
-
-// console.log(campains[0].managerId)
-
-// campaigns.map(function())
-
-//   campaigns.map(function(campaign){
-//   console.log("oy" + campaign._id)
-//   return campaign._id
-// })
-
-// console.log(cam)
-
-let allTickets = await ticket.getAllTickets()
-
-// let campaignsOwned = campaigns.filter((campaign)=>{
-//   return campaign.managerId == new ObjectID(req.session.user._id)
-// })
-
-
-// console.log(campaignsOwned)
-
-
-// let  influencerData =allTickets.map(async function(ticket){
-//   try{
-//   let user =  new User()
-//  let influencer =  await user.findInfluencerById(ticket.influencerId)
-//  console.log("hello:" + influencer)
-//   return   influencer
-//   }
-//   catch(e){
-//     console.log(e)
-//   }
-// })
-
-// let influencerData =  allTickets.map(async function(ticket){
-// let user =   new User()
-// return  await user.findInfluencerById(ticket.influencerId)
-// })
-
-// console.log(influencerData[0])
-
-// try{
-// await ticket.lookUP()
-// } catch(e){
-// console.log("Lookup:"+e)
-// }
 
         res.render("dashboard-manager", {
           username: req.session.user.username,
@@ -189,9 +135,7 @@ exports.displayDashboard=function(req, res){
   res.redirect('/')
 }
 
-  // exports.home = async function(req, res){
-  //   res.render('homepage-guest', {regErrors: req.flash('regErrors')})
-  // }
+
 
 
 

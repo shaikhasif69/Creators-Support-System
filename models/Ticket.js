@@ -42,34 +42,6 @@ return allTickets
   }
 
 
-// Ticket.prototype.findInfluencerById = async function(id){
-
-// }
-
-
-//   Ticket.prototype.lookUP= async function(){
-//     try{
-// let influencer = await ticketsCollection.aggregate([
-
-//         {$lookup: {from: "tickets", localField: "influencerId", foreignField: "username", as: "userDoc"}},
-//         {$project: {
-//           username: {$arrayElemAt: ["$userDoc.username", 0]},
-//         }}
-//   ]).toArray()
-
-//   influencer.map(function(inf){
-//     return inf
-//   })
-//   console.log("Test"+influencer)
-  
-//   } 
-
-//   catch(e){
-//     console.log("Model LOOkup:" + e)
-//   }
-//   }
-
-
 Ticket.prototype.findTicketbyCampaignId = async function(id){
   console.log(id)
   let tickets = await ticketsCollection.find({campaignId: id}).toArray()
@@ -77,4 +49,19 @@ Ticket.prototype.findTicketbyCampaignId = async function(id){
   return tickets
     }
 
+
+    Ticket.prototype.findTicketById =async  function(id){
+      let ticket = await ticketsCollection.findOne({_id: new ObjectID(id)})
+      console.log(ticket.ticketBody)
+      return ticket
+    }
+
+
+
+    Ticket.prototype.getTicketsByInfluencerId = async function(id){
+      console.log(id)
+      let tickets = await  ticketsCollection.find({influencerId: new ObjectID(id)}).toArray()
+      console.log(tickets)
+      return tickets
+    }
   module.exports = Ticket

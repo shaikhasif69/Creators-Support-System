@@ -1,5 +1,6 @@
 const Campaign = require("../models/Campaign")
 const Ticket = require("../models/Ticket")
+const Answer = require("../models/Answer")
 
 exports.raiseTicket = async function(req, res){
     try{
@@ -31,9 +32,38 @@ exports.openReplyForm = async function(req, res){
 
     let ticket = new Ticket()
     let ticketData= await ticket.findTicketById(req.params.id)
-console.log(ticketData)
+// console.log(ticketData)
 
     res.render('ticket-reply-form',{
         ticket: ticketData
     })
 }
+
+exports.viewTicket_influencer = async function(req, res){
+    let ticket = new Ticket()
+    let ticketData= await ticket.findTicketById(req.params.id)
+
+    let answer = new Answer()
+    let answerToTicket = await answer.getAnswerByTicketId(req.params.id)
+    console.log(answerToTicket)
+    res.render('viewticketdetails-influencer',{
+        ticket:ticketData,
+    answers: answerToTicket
+        })
+  }
+
+
+  exports.closeTicket = async function(req, res){
+      let ticket = new Ticket()
+      await ticket.closeTicket(req.params.id)
+      req.flash("success", "Ticket Closed Successfully.")
+req.session.save(function() {
+  res.redirect('/')
+
+})
+  }
+
+  exports.changeStatusToOngoing = async function(ticketId){
+      let ticket = new Ticket()
+      await ticket.changeStatusToOngoing(ticketId)
+  }

@@ -86,7 +86,12 @@
                                             <td>Kush</td>
                                             <td>Campaign name</td>
                                             <td><%=ticket.ticketStatus%></td>
+                                            <%if(ticket.ticketStatus == "Open"){ %>
                                             <td><a class="btn btn-sm btn-primary" href="/answer-ticket/<%=ticket._id%>">Reply</a></td>
+                                            <% } else {%>
+                                                <td><a style="pointer-events:none;" class="btn btn-sm  btn-secondary"  href="/answer-ticket/<%=ticket._id%>">Reply</a></td>
+
+                                            <%}%>
                                         </tr>
                                         <% counter++ %>
                                     <% }) %>

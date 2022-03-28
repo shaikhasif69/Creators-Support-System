@@ -17,16 +17,20 @@ router.post('/logout', userController.logout)
 
 //Testing purposes
 router.get('/add', campaignController.addCampaign)
-
+//Campaign related  routes
+router.get('/all-campaigns-influencer', campaignController.getAllCampaigns)
 
 //ticket related routes
 router.post('/raise-ticket/:id',  ticketController.raiseTicket)
 router.get('/raise-ticket-form/:id',userController.mustBeInfluencer, ticketController.displayTicketForm)
+router.post('/accept-to-close/:id', ticketController.closeTicket)
 
 //frontend manager related
 router.get('/idk', userController.pageLoad)
 router.get('/dashboard', userController.displayDashboard)
 router.get('/answer-ticket/:id', userController.mustBeManager ,ticketController.openReplyForm)
 router.post('/answer-ticket/:id', userController.mustBeManager ,answerController.saveAnswer)
+router.get('/view-ticket-details/:id',ticketController.viewTicket_influencer)
+
 
 module.exports = router

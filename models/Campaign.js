@@ -37,7 +37,7 @@ Campaign.prototype.getCampaigns = async function(managerId){
 }
 
 Campaign.prototype.getAllCampaigns = async function(managerId){
-  let campaigns = await campaignsCollection.find().toArray()
+  let campaigns = await campaignsCollection.find({}).toArray()
   // console.log(campaigns)
   return campaigns
 }

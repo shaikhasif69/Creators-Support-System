@@ -59,9 +59,21 @@ Ticket.prototype.findTicketbyCampaignId = async function(id){
 
 
     Ticket.prototype.getTicketsByInfluencerId = async function(id){
-      console.log(id)
+      // console.log(id)
       let tickets = await  ticketsCollection.find({influencerId: new ObjectID(id)}).toArray()
-      console.log(tickets)
+      // console.log(tickets)
       return tickets
     }
+
+Ticket.prototype.closeTicket = async function(TticketId){
+await ticketsCollection.findOneAndUpdate({_id: new ObjectID(TticketId)}, {$set: {ticketStatus: "Closed"}})
+}
+
+Ticket.prototype.changeStatusToOngoing = async function(TticketId){
+await ticketsCollection.findOneAndUpdate({_id: new ObjectID(TticketId)}, {$set: {ticketStatus: "Ongoing"}})
+}
+
+
+
+
   module.exports = Ticket

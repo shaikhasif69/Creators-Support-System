@@ -84,14 +84,16 @@ let campaigns = await campain.getAllCampaigns()
 // let answers =  await answer.getAllAnswers
 
 let tickets = new Ticket()
-let influencerTickets = tickets.getTicketsByInfluencerId(req.session.user._id)
+let influencerTickets = await tickets.getTicketsByInfluencerId(req.session.user._id)
+
         res.render("influencer-dashboard", {
           username: req.session.user.username,
           role: req.session.user.role, //remove this later
           campaigns: campaigns,
-          tickets: influencerTickets 
+          tickets: influencerTickets
         })
       }
+
      else if(req.session.user.role =="manager"){
 
 let campaign = new Campaign()
@@ -103,9 +105,12 @@ let campaigns = await campaign.getCampaigns(req.session.user._id)
 // console.log(campaigns)
  let ticket = new Ticket()
 
+
 let tickets = await Promise.all(campaigns.map(async (campaign)=>{
   return await ticket.findTicketbyCampaignId(campaign._id)
 }))
+
+// console.log(tickets)
 
 // console.log(tickets)
 

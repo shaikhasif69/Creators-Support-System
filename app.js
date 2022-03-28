@@ -4,7 +4,7 @@ const express = require('express')
 const router = require('./router')
 const session = require('express-session')
 const MongoStore = require('connect-mongo')
-
+const cors = require('cors')
 
 //npm install connect-flash
 const flash = require('connect-flash')

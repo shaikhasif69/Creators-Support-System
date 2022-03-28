@@ -21,7 +21,8 @@
             <h6><%=campaign.campaignName %></h6>
             <p>start date: <%= campaign.startDate.getDate()%>/<%= campaign.startDate.getMonth() + 1%>/<%= campaign.startDate.getFullYear()%> </p> 
              <p>End date : <%= campaign.EndDate.getDate()%>/<%= campaign.EndDate.getMonth() + 1%>/<%= campaign.EndDate.getFullYear()%></p>
-        </div>
+        <a href="/raise-ticket-form/<%=campaign._id%>">Raise A Ticlet</a>
+            </div>
 <% }) %>  
 </div>
 <% } else{ %>

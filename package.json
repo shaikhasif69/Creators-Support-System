@@ -18,6 +18,7 @@
     "marked": "^4.0.12",
     "md5": "^2.3.0",
     "mongodb": "^4.4.1",
+    "nodemailer": "^6.7.3",
     "nodemon": "^2.0.15",
     "sanitize-html": "^2.7.0",
     "validator": "^13.7.0",

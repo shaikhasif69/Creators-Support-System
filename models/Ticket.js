@@ -20,7 +20,8 @@ let Ticket = function(data, campaignId, influencerId) {
         raisedDate: new Date(),
         influencerId: this.influencerId,  //has to be thought ho to take in
         ticketStatus: "Open",
-        category: this.data.category
+        category: this.data.category,
+        assignedTo: null
         // issueImg: ,
     }
   }
@@ -74,6 +75,9 @@ await ticketsCollection.findOneAndUpdate({_id: new ObjectID(TticketId)}, {$set: 
 }
 
 
+Ticket.prototype.assignTicket = async function(ticketId,managerUsername){
 
+await ticketsCollection.findOneAndUpdate({_id: new ObjectID(ticketId)}, {$set:{assignedTo: managerUsername}})
+}
 
   module.exports = Ticket

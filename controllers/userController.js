@@ -4,6 +4,7 @@ const Campaign = require('../models/Campaign')
 const Ticket = require('../models/Ticket')
 const { ObjectID } = require('mongodb')
 const Answer = require('../models/Answer')
+const Manager = require('../models/Manager')
  
 exports.mustBeManager = function(req, res, next) {
     if (req.session.user.role == "manager") {
@@ -98,29 +99,24 @@ let influencerTickets = await tickets.getTicketsByInfluencerId(req.session.user.
 
 let campaign = new Campaign()
 
-
-
-
 let campaigns = await campaign.getCampaigns(req.session.user._id)
 // console.log(campaigns)
  let ticket = new Ticket()
-
 
 let tickets = await Promise.all(campaigns.map(async (campaign)=>{
   return await ticket.findTicketbyCampaignId(campaign._id)
 }))
 
-// console.log(tickets)
-
-// console.log(tickets)
-
+let manager = new Manager()
+let managers = await manager.getAllManagers()
 
         res.render("dashboard-manager", {
           username: req.session.user.username,
           role: req.session.user.role, //remove this later
           campaigns: campaigns,
           // tickets: allTickets,
-          tickets: tickets
+          tickets: tickets,
+          managers: managers
         })}
         else{
           res.send("Something else")

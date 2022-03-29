@@ -61,7 +61,7 @@ req.session.save(function() {
 
 
 exports.displayTicketForm= async function(req,res){
-    // console.log(req.params.id)
+    console.log(req.params.id)
     let campaign = await new Campaign().findCampaignById(req.params.id)
     res.render('raise-ticket-form', {
         campaign: campaign
@@ -75,8 +75,12 @@ exports.openReplyForm = async function(req, res){
     let ticketData= await ticket.findTicketById(req.params.id)
 // console.log(ticketData)
 
+let manager = new Manager()
+let managers = await manager.getAllManagers()
     res.render('ticket-reply-form',{
-        ticket: ticketData
+        ticket: ticketData,
+        username: req.session.user.username,
+        managers: managers
     })
 }
 
@@ -89,7 +93,7 @@ exports.viewTicket_influencer = async function(req, res){
     console.log(answerToTicket)
     res.render('viewticketdetails-influencer',{
         ticket:ticketData,
-    answers: answerToTicket
+        answers: answerToTicket
         })
   }
 
@@ -110,4 +114,23 @@ req.session.save(function() {
   }
 
 
-  
+  exports.assignTicket = async function(req,res){
+      if(req.body.assignedManager == "undefined"){
+        req.flash("errors", "You can't assign ticket to yourself.")
+        req.session.save(function() {
+    //   console.log(req.params)
+
+          res.redirect(`/answer-ticket/${req.params.id}`)
+        
+        })
+      }
+      else{
+let ticket = new Ticket()
+await ticket.assignTicket(req.params.id, req.body.assignedManager)
+req.flash("success", "Ticket Assigned Successfully.")
+        req.session.save(function() {
+    //   console.log(req.params)
+          res.redirect('/')
+        })
+      }
+  }

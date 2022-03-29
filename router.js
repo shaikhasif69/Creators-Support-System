@@ -24,6 +24,7 @@ router.get('/all-campaigns-influencer', campaignController.getAllCampaigns)
 router.post('/raise-ticket/:id',  ticketController.raiseTicket)
 router.get('/raise-ticket-form/:id',userController.mustBeInfluencer, ticketController.displayTicketForm)
 router.post('/accept-to-close/:id', ticketController.closeTicket)
+router.post('/assign-ticket/:id', ticketController.assignTicket)
 
 //frontend manager related
 router.get('/idk', userController.pageLoad)

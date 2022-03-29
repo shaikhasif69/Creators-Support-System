@@ -78,12 +78,15 @@
                                 <% let counter=1%>
                              <%   if(tickets.length) {%>
                            <%     tickets.forEach(function (ticketArr){ %>
-                                    <%ticketArr.forEach(function(ticket){ %>
+                                    <% ticketArr.forEach(function(ticket){ %>
+                                        <%if(ticket.assignedTo == null) {%>
                                         <tr>
                                             <td><%=counter%></td>
                                             <td><%=ticket.ticketTitle%></td>
                                             <td><%= ticket.raisedDate.getDate()%>-<%=ticket.raisedDate.getMonth() +1%>-<%=ticket.raisedDate.getFullYear()%></td>
-                                            <td>Kush</td>
+                                            <td>
+                                  <%=ticket.assignedTo%>
+                                             </td>
                                             <td>Campaign name</td>
                                             <td><%=ticket.ticketStatus%></td>
                                             <%if(ticket.ticketStatus == "Open"){ %>
@@ -94,6 +97,8 @@
                                             <%}%>
                                         </tr>
                                         <% counter++ %>
+                                      
+                                        <%}%>
                                     <% }) %>
                                    <%})%>
 
@@ -119,22 +124,44 @@
                                     <th scope="col">Sr.</th>
                                     <th scope="col">Subject</th>
                                     <th scope="col">Date</th>
-                                    <th scope="col">Influencer</th>
+                                    <th scope="col">Assigned To</th>
                                     <th scope="col">Campaign names</th>
                                     <th scope="col">Status</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Enquiry will be raised here</td>
-                                    <td>26-03-2022</td>
-                                    <td>Kush</td>
-                                    <td>Campaign name</td>
-                                    <td>Pending</td>
-                                    <td><a class="btn btn-sm btn-primary" href="">Reply</a></td>
-                                </tr>
+                              
+                                <% counter=1%>
+                                <%   if(tickets.length) {%>
+                              <%     tickets.forEach(function (ticketArr){ %>
+                                       <% ticketArr.forEach(function(ticket){ %>
+                                           <%if(ticket.assignedTo != null) {%>
+                                           <tr>
+                                               <td><%=counter%></td>
+                                               <td><%=ticket.ticketTitle%></td>
+                                               <td><%= ticket.raisedDate.getDate()%>-<%=ticket.raisedDate.getMonth() +1%>-<%=ticket.raisedDate.getFullYear()%></td>
+                                               <td>
+                                     
+                                        <%=ticket.assignedTo%>
+                                                </td>
+                                               <td>Campaign name</td>
+                                               <td><%=ticket.ticketStatus%></td>
+                                               <%if(ticket.ticketStatus == "Open"){ %>
+                                               <td><a class="btn btn-sm btn-primary" href="/answer-ticket/<%=ticket._id%>">Reply</a></td>
+                                               <% } else {%>
+                                                   <td><a style="pointer-events:none;" class="btn btn-sm  btn-secondary"  href="/answer-ticket/<%=ticket._id%>">Reply</a></td>
+   
+                                               <%}%>
+                                           </tr>
+                                           <% counter++ %>
+                                         
+                                           <%}%>
+                                       <% }) %>
+                                      <%})%>
+   
+                               <%    } %>
+
                                 <tr>
                                     <td>2</td>
                                     <td>Enquiry will be raised here</td>

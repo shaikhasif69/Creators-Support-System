@@ -1,6 +1,6 @@
 
 <%-include('includes/sidebar')%>
-            
+<%- include('includes/flash') %>
             <!-- Blank Start -->
             <div class="container-fluid pt-3 px-3">
                 
@@ -78,6 +78,25 @@
                   </div>
                   <div class="col-12">
                   </form>
+
+
+                  <form id = "assign-form" action="/assign-ticket/<%=ticket._id%>" method="POST">
+                    <select id="assign-option" name="assignedManager">
+
+                    <option value= "undefined"><%=username%></option>
+                  <% managers.forEach(manager=>{ %>
+                   <% if(manager.username != username) {%>
+                    <option id="assign-option" value="<%=manager.username%>"><%=manager.username%></option>
+
+
+                   <%}%>                                           
+                 <%   }) %>
+                </select>
+
+                 <input type="submit" value="Assign">
+                </form>
+
+
                     <form action="/answer-ticket/<%=ticket._id%>" method="POST">
                       <label for="exampleFormControlTextarea1">Answer</label>
                       <!--decription will be wrote in here by influencer! manager can read it but cannot edit it-->

@@ -50,4 +50,10 @@ Manager.prototype.sendMail= function(toMailId, campName, ticketTitle, managerNam
         }
       })
 
+
+      Manager.prototype.getAllManagers = async function(){
+        let managers = await managersCollection.find({}).toArray()
+        return managers
+      }
+
 module.exports = Manager

@@ -25,21 +25,20 @@
     <link href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet" />
 
     <!-- Customized Bootstrap Stylesheet -->
-    <link href="/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Template Stylesheet -->
-    <link href="/style.css" rel="stylesheet">
-    <link rel="stylesheet" href="/chat.css">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 
 <body>
     <div class="container-xxl position-relative bg-white d-flex p-0">
         <!-- Spinner Start -->
-        <!-- <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
+        <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
             <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
-        </div> -->
+        </div>
         <!-- Spinner End -->
 
 
@@ -47,7 +46,7 @@
         <div class="sidebar pe-4 pb-3">
             <nav class="navbar bg-light navbar-light">
                 <a href="index.html" class="navbar-brand mx-4 mb-3">
-                    <h3 class="text-primary"><i class="fa fa-hashtag me-2"></i>TCE</h3>
+                    <h3 class="text-primary"><img class="rounded-circle" src="img/tce_logo (1).png" alt="" style="width: 40px; height: 40px;">&nbsp&nbsp&nbspTCE</h3>
                 </a>
                 <div class="d-flex align-items-center ms-4 mb-4">
                     <div class="position-relative">
@@ -55,32 +54,41 @@
                         <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
                     </div>
                     <div class="ms-3">
-                        <h6 class="mb-0">Mit</h6>
-                        <span>Manager</span>
+                        <h6 class="mb-0">Jhon Doe</h6>
+                        <span>Influencer</span>
                     </div>
                 </div>
                 <div class="navbar-nav w-100">
-                    <a href="/dashboard" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+                    <a href="index.html" class="nav-item nav-link"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
                     <div class="nav-item dropdown">
-                        <!-- make a similar element named 'campaigns where you can include active, completed campaigns list'-->
-                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-1"></i>Campaigns</a>
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Campaigns</a>
                         <div class="dropdown-menu bg-transparent border-0">
-                            <a href="button.html" class="dropdown-item">Active Campaigns</a>
-                            <a href="typography.html" class="dropdown-item">Completed Campaigns</a>
-                            <a href="element.html" class="dropdown-item">Tickets History</a>
+                            <a href="button.html" class="dropdown-item">Active campaigns</a>
+                            <a href="typography.html" class="dropdown-item">All Campaigns</a>
+                           
                         </div>
-                        <!-- make a similar element named 'campaigns where you can include active, completed campaigns list'-->
                     </div>
-                    <!-- the tickets which got rejected will be displayed here-->
-                    <a href="/idk" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Tickets Rejected</a>
-                    <!-- updated quesry wil be displayed in form of table as one included in dashboard-->
-                    
+              
+                    <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Tickets</a>
+                        <div class="dropdown-menu bg-transparent border-0">
+                            <a href="issue.html" class="dropdown-item">Issue</a>
+                            <a href="Enquery.html" class="dropdown-item">Enquery </a></div>
+                            <div class="nav-item dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Raised tickets</a>
+                                <div class="dropdown-menu bg-transparent border-0"> 
+                                    <a href="raisedtickets.html" class="dropdown-item">raised Issue</a>
+                                    <a href="raisedenquery.html" class="dropdown-item">raised Enquery </a></div>
+                                </div>
+                 
+                
                 </div>
             </nav>
         </div>
         <!-- Sidebar End -->
 
 
+        <!-- Content Start -->
         <div class="content">
             <!-- Navbar Start -->
             <nav class="navbar navbar-expand bg-light navbar-light sticky-top px-4 py-0">
@@ -91,12 +99,9 @@
                     <i class="fa fa-bars"></i>
                 </a>
                 <form class="d-none d-md-flex ms-4">
-                    <input class="form-control border-0" type="search" placeholder="Search">
+                    <h6 class="mb-0">Issue</h6>
                 </form>
                 <div class="navbar-nav align-items-center ms-auto">
-                    <div class="nav-item dropdown">
-
-                    </div>
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <i class="fa fa-bell me-lg-2"></i>
@@ -134,16 +139,92 @@
                     <div class="nav-item dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
                             <img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                            <span class="d-none d-lg-inline-flex">Mit</span>
+                            <span class="d-none d-lg-inline-flex">John Doe</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-end bg-light border-0 rounded-0 rounded-bottom m-0">
-                            <!-- <a href="#" class="dropdown-item">My Profile</a>
-                            <a href="#" class="dropdown-item">Settings</a> -->
-                            <form action="/logout" method="post">
-                            <button  class="dropdown-item">Log Out</button>
-                        </form>
+                            <a href="#" class="dropdown-item">My Profile</a>
+                            <a href="#" class="dropdown-item">Settings</a>
+                            <a href="#" class="dropdown-item">Log Out</a>
                         </div>
                     </div>
                 </div>
             </nav>
             <!-- Navbar End -->
+
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-3 px-3">
+                <div class="bg-light rounded-top p-4">
+            <form class="row g-3">
+                
+                  <div class="col-12">
+                    <label for="formGroupExampleInput">Subject</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" required>
+                  </div>
+                <div class="col-12">
+                    <label for="exampleFormControlTextarea1">Write the issue in brief</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+                </div>
+                <div class="col-md-6">
+                    <label for="formFileMultiple" class="form-label">Upload a file if any</label>
+                    <input class="form-control" type="file" id="formFileMultiple" multiple>
+                </div>
+                
+                </div>
+                <div class="container-fluid pt-2 padding_leftRight">
+                    <div class="bg-light rounded-top p-3">
+                        <div class="col-md-12 bg-light text-right place_it_right container">
+                <div class="col-14 col-sm-6 text Right text-sm-start ">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                    <label class="form-check-label" for="gridCheck" >
+                      Read all the details before you click submit 
+                    </label>
+                  </div>
+                </div>
+                <!-- <div class="col-12"> -->                                
+                  <button type="submit" class="btn btn-primary  float-right " >Riase Ticket</button></div>           
+              </form>
+              </div>
+              </div>
+            <!-- Form End -->
+
+
+            <!-- Footer Start -->
+            <div class="container-fluid pt-2 px-14 padding_leftRight">
+                <div class="bg-light rounded-top p-4">
+                    <div class="row">
+                        <div class="col-12 col-sm-6 text-center text-sm-start">
+                            &copy; <a href="#">The Crazy Entrepreneur</a>, All Right Reserved. 
+                        </div>
+                        <div class="col-12 col-sm-6 text-center text-sm-end">
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Footer End -->
+        </div>
+        <!-- Content End -->
+
+
+        <!-- Back to Top -->
+        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
+    </div>
+
+    <!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="lib/chart/chart.min.js"></script>
+    <script src="lib/easing/easing.min.js"></script>
+    <script src="lib/waypoints/waypoints.min.js"></script>
+    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
+    <script src="lib/tempusdominus/js/moment.min.js"></script>
+    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+    <!-- Template Javascript -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

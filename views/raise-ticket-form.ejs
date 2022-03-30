@@ -4,18 +4,51 @@
 
 
 
-<form action="/raise-ticket/<%=campaign._id%>" method="POST">
 
-    <input type="text" name="title" id="" placeholder="title">
-    <input type="text" name="body" id="" placeholder="body">
 
-    <label for="">Your Issue is about</label>
-    <select id="cars" name="category">
-        <option value="payment">Payment</option>
-        <option value="something">Something</option>
-        
-      </select>
 
-<button>Raise Ticket</button>
-</form>
+
+            <!-- Form Start -->
+            <div class="container-fluid pt-3 px-3">
+              <div class="bg-light rounded-top p-4">
+          <form class="row g-3"  action="/raise-ticket/<%=campaign._id%>" method="POST" enctype="multipart/form-data" >
+              
+                <div class="col-12">
+                  <label   for="formGroupExampleInput">Question</label>
+                  <input name="title" type="text" class="form-control" id="formGroupExampleInput" required>
+                </div>
+              <div class="col-12">
+                  <label  for="exampleFormControlTextarea1">Write your issue in brief</label>
+                  <textarea name="body" class="form-control" id="exampleFormControlTextarea1" rows="3" required></textarea>
+              </div>
+              <div class="col-md-6">
+                  <label for="formFileMultiple" class="form-label">Upload a file if any</label>
+                  <input required type="file" class="form-control"   name="images" id="formFile">
+                </div>
+              
+              </div>
+              <div class="container-fluid pt-2 padding_leftRight">
+                  <div class="bg-light rounded-top p-3">
+                      <div class="col-md-12 bg-light text-right place_it_right container">
+              <div class="col-14 col-sm-6 text Right text-sm-start ">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="gridCheck" required>
+                  <label class="form-check-label" for="gridCheck" >
+                    Read all the details before you click submit 
+                  </label>
+                </div>
+              </div>
+              <!-- <div class="col-12"> -->
+                 
+                 
+                 
+                 
+    
+                <button  class="btn btn-primary  float-right " >Ask Question</button></div>
+
+             
+            </form>
+            </div>
+            </div>
+          <!-- Form End -->
 

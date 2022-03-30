@@ -2,11 +2,14 @@ const { ObjectID } = require('mongodb')
 
 const ticketsCollection = require('../db').db().collection("tickets")
 
-let Ticket = function(data, campaignId, influencerId) {
+let Ticket = function(data, campaignId, influencerId, managerUsername, img) {
+  // console.log(managerUsername)
     this.data = data
     this.errors = []
     this.campaignId = new ObjectID(campaignId)
     this.influencerId = new ObjectID(influencerId)
+    this.managerUsername = managerUsername,
+    this.image = img
   }
 
   Ticket.prototype.cleanUp = function(){
@@ -21,8 +24,11 @@ let Ticket = function(data, campaignId, influencerId) {
         influencerId: this.influencerId,  //has to be thought ho to take in
         ticketStatus: "Open",
         category: this.data.category,
-        assignedTo: null
-        // issueImg: ,
+        assignedTo: [{assignedManagerUsername: this.managerUsername, assignedDate: new Date()}],
+        assignedStatus: 0,
+        filename: this.image.filename,
+        contentType: this.image.contentType,
+        imageBase64: this.image.imageBase64,
     }
   }
 
@@ -77,7 +83,7 @@ await ticketsCollection.findOneAndUpdate({_id: new ObjectID(TticketId)}, {$set: 
 
 Ticket.prototype.assignTicket = async function(ticketId,managerUsername){
 
-await ticketsCollection.findOneAndUpdate({_id: new ObjectID(ticketId)}, {$set:{assignedTo: managerUsername}})
+await ticketsCollection.findOneAndUpdate({_id: new ObjectID(ticketId)}, {$push:{assignedTo: { assignedManagerUsername :managerUsername, assignedDate: new Date()}}, $set:{assignedStatus: 1 }})
 }
 
   module.exports = Ticket

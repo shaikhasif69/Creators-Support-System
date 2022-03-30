@@ -111,6 +111,7 @@ let manager = new Manager()
 let managers = await manager.getAllManagers()
 
         res.render("dashboard-manager", {
+          myId: new ObjectID(req.session.user._id),
           username: req.session.user.username,
           role: req.session.user.role, //remove this later
           campaigns: campaigns,

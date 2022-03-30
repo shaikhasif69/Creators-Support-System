@@ -13,6 +13,7 @@ dotenv.config()
       console.log("Connected")
       module.exports = client
       const app = require('./app')
+      
       app.listen(process.env.PORT)
       
    

@@ -3,70 +3,45 @@
             <!-- Typography Start -->
             <link href="/activecapm.css" rel="stylesheet">
 
-            <%if(campaigns.length){ %>
-                <div class="cards">
-<% campaigns.forEach(function(campaign){ %>
-  
-        <!-- <div class="card"> -->
-          <!-- <img class="card__image" src="img/airtel.png" alt=""> -->
-          <!-- <div class="card__content">
-            <h6><%=campaign.campaignName %></h6>
-             <p>start date: <%= campaign.startDate.getDate()%>/<%= campaign.startDate.getMonth() + 1%>/<%= campaign.startDate.getFullYear()%> </p> -->
-             <!-- <p>status : Active</p> -->
-             <!-- <p>End date :20 feb</p>
-             <p>campaign maneger:  </p>
-             
-          </div> -->
-          <div class="campaign-card">
-            <h6><%=campaign.campaignName %></h6>
-            <p>start date: <%= campaign.startDate.getDate()%>/<%= campaign.startDate.getMonth() + 1%>/<%= campaign.startDate.getFullYear()%> </p> 
-             <p>End date : <%= campaign.EndDate.getDate()%>/<%= campaign.EndDate.getMonth() + 1%>/<%= campaign.EndDate.getFullYear()%></p>
-        <a href="/raise-ticket-form/<%=campaign._id%>">Raise A Ticlet</a>
-            </div>
-<% }) %>  
-</div>
-<% } else{ %>
-<p>There are no campaigns yet</p>
-<% } %>
+
             <!-- Typography End -->
 
 
-            <!-- Footer Start -->
-            <div class="container-fluid pt-4 px-4">
-                <div class="bg-light rounded-top p-4">
-                    <div class="row">
-                        <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+            <section class="light">
+                <div class="container py-2">
+                 
+                    <%if(campaigns.length){ %>
+                     
+        <% campaigns.forEach(function(campaign){ %>
+
+
+                    <article class="postcard light blue">
+                      
+                            <img class="postcard__img" src="https://images.unsplash.com/photo-1508599589920-14cfa1c1fe4d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8YnJhbmR8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60" alt="Image Title" />
+                        </a>
+                        <div class="postcard__text t-dark">
+                            <h1 class="postcard__title blue"> <%=campaign.campaignName %> </h1>
+                            <div class="postcard__subtitle small">
+                                <h6> NIKE</h6>
+                            
+                            </div>
+                          
+                            <div class="postcard__bar"></div>
+                            <h6>Start date : <%= campaign.startDate.getDate()%>/<%= campaign.startDate.getMonth() + 1%>/<%= campaign.startDate.getFullYear()%></h6>
+                            <h6>End date : <%= campaign.EndDate.getDate()%>/<%= campaign.EndDate.getMonth() + 1%>/<%= campaign.EndDate.getFullYear()%></h6>
+                            <!-- <div class="postcard__preview-txt">description !description !description !description !description !description !description !description !description !description !</div> -->
+                           <a href="/raise-ticket-form/<%=campaign._id%>" class="card__link"><h6> <u>Raise ticket </u></h6></a>
+                 </li>
+                            </ul>
                         </div>
-                        <div class="col-12 col-sm-6 text-center text-sm-end">
-                            <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
-                        </div>
-                    </div>
+                    </article>
+
+                    <% }) %>  
+      
+                <% } else{ %>
+                <p>There are no campaigns yet</p>
+                <% } %>
+    
+
                 </div>
-            </div>
-            <!-- Footer End -->
-        </div>
-        <!-- Content End -->
-
-
-        <!-- Back to Top -->
-        <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-    </div>
-
-    <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/chart/chart.min.js"></script>
-    <script src="lib/easing/easing.min.js"></script>
-    <script src="lib/waypoints/waypoints.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-    <script src="lib/tempusdominus/js/moment.min.js"></script>
-    <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
-    <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-</body>
-
-</html>
+            </section>

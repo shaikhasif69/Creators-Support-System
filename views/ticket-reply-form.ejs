@@ -13,12 +13,12 @@
       <div class="col-md-6">
           <!--as the manager click on reply button all the information of influencer will be pre written on this page-->
         <label for="inputEmail4" class="form-label">Influencer Name</label>
-        <input disabled type="text" class="form-control" id="inputEmail4" placeholder=" Kush ">
+        <input disabled type="text" class="form-control" id="inputEmail4" value="<%=ticket.influencerUsername %>">
       </div>
       <div class="col-md-6">
         <label for="inputPassword4" class="form-label" >Ticket Raised For</label>
        <!--I am writing here the information wrote by influencer will be displayed-->
-        <input disabled type="text" class="form-control" id="inputPassword4" placeholder="Nothing Matters">
+        <input disabled type="text" class="form-control" id="inputPassword4" value="<%=ticket.cName%>">
       </div>
         <!--Here will be displayed the subkect what was displayed initial at dashboard! -->
         <div class="col-12">
@@ -51,14 +51,14 @@
               justify-content: flex-start;
               padding-left: 1rem;">Answer</label>
               <!--decription will be wrote in here by influencer! manager can read it but cannot edit it-->
-              <textarea  class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Write your respone here" style="padding-left: 1rem;"></textarea>
+              <textarea name="reply" class="form-control" id="exampleFormControlTextarea1" rows="4" placeholder="Write your respone here" style="padding-left: 1rem;"></textarea>
           <div class="s-btn" style="display: flex;
           justify-content: flex-end;
           padding-top: 1rem;">
           
 
 
-              <button type="submit" class="btn btn-primary  float-right " >Answer Ticket</button>
+              <button  class="btn btn-primary  float-right " >Answer Ticket</button>
           </div>
       
           </div>  

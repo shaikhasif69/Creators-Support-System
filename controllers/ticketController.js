@@ -2,6 +2,7 @@ const Campaign = require("../models/Campaign")
 const Ticket = require("../models/Ticket")
 const Answer = require("../models/Answer")
 const Manager = require("../models/Manager")
+const Influencer = require("../models/Influencer")
 const fs = require('fs')
 //npm install nodemailer
 
@@ -100,11 +101,15 @@ const encode_image = img.toString('base64')
                 
                 let manager = new Manager()
                 let managerDoc = await manager.getManagerById(campaignDoc.managerId)
+
+            //     let user = new Influencer()
+            //    let influencerDoc =  await user.getInfluById(req.session.user._id)
+                
         // console.log("Hi:" + managerDoc.username)
 
     // console.log(finalImg);
 
-        let ticket = new Ticket(req.body, req.params.id, req.session.user._id, managerDoc.username, finalImg)
+        let ticket = new Ticket(req.body, req.params.id, campaignDoc.campaignName, req.session.user._id, req.session.user.username ,managerDoc.username, finalImg)
         await ticket.raiseTicket()
         
         

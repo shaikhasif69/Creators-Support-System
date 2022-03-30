@@ -2,12 +2,14 @@ const { ObjectID } = require('mongodb')
 
 const ticketsCollection = require('../db').db().collection("tickets")
 
-let Ticket = function(data, campaignId, influencerId, managerUsername, img) {
+let Ticket = function(data, campaignId, cName, influencerId, influencerUsername, managerUsername, img) {
   // console.log(managerUsername)
     this.data = data
     this.errors = []
     this.campaignId = new ObjectID(campaignId)
+  this.cName = cName
     this.influencerId = new ObjectID(influencerId)
+    this.influencerUsername = influencerUsername
     this.managerUsername = managerUsername,
     this.image = img
   }
@@ -29,6 +31,10 @@ let Ticket = function(data, campaignId, influencerId, managerUsername, img) {
         filename: this.image.filename,
         contentType: this.image.contentType,
         imageBase64: this.image.imageBase64,
+        cName: this.cName,
+        managerUsername : this.managerUsername,
+    influencerUsername : this.influencerUsername
+
     }
   }
 

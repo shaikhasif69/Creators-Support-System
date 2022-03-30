@@ -1,28 +1,14 @@
 <%-include('includes/header-influencer')%> 
+<%-include('includes/flash')%>
+
+
+
 
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-3 px-3">
                 <div class="row g-4">
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                          
-                            <i class="bi bi-activity fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <h6 class="mb-2">&nbspActive campaigns &nbsp&nbsp&nbsp</h6>
-                                <h6 class="mb-0">15</h6>
-                            </div>
-
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-xl-3">
-                        <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                            <i class="bi bi-award-fill fa-3x text-primary"></i>
-                            <div class="ms-3">
-                                <h6 class="mb-2">Successfull Campaigns </h6>
-                                <h6 class="mb-0">25</h6>
-                            </div>
-                        </div>
-                    </div>
+                  
+                 
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
                             <i class="bi bi-emoji-smile-fill fa-3x text-primary"></i>
@@ -45,7 +31,7 @@
             </div>
             <!-- Sale & Revenue End -->
 
-            <%-include('includes/flash')%>
+  
             
 
 
@@ -119,7 +105,7 @@
                 </div> -->
             </div>
             <div class="container-fluid pt-3 px-3">
-                <div class="bg-light text-center rounded p-4">
+                <!-- <div class="bg-light text-center rounded p-4">
             <div class="row g-4">
                 <div class="bg-light text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
@@ -127,38 +113,11 @@
                         <a href="raisedenquery.html">Show All</a>
                     </div>
                     <div class="table-responsive">
-                        <table class="table text-start align-middle table-bordered table-hover mb-0">
-                            <thead>
-                                <tr class="text-dark">
-                                    <th scope="col">Sr.</th>
-                                    <th scope="col">Ticket Title</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Campaign names</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <% let counter=1%>
-                                <%   if(tickets.length) {%>
-                                <%tickets.forEach(function(ticket){%>
-                                    <tr>
-                                        <td><%=counter%></td>
-                                        <td><%=ticket.ticketTitle%></td>
-                                        <td><%= ticket.raisedDate.getDate()%>-<%=ticket.raisedDate.getMonth() +1%>-<%=ticket.raisedDate.getFullYear()%></td>
-                                        <td>Campaign name </td>
-                                        <td><%=ticket.ticketStatus%></td>
-                                        <td><a class="btn btn-sm btn-primary" href="/view-ticket-details/<%=ticket._id%>">View Details</a></td>
-                                    </tr>
-                                    <%counter++%>
-                                <%})%>
-                                <%    } %>
-                            </tbody>
-                        </table>
+                  
                     </div>
                     </div>
                     </div>
-                    </div>
+                    </div> -->
                     </div>
              <!-- Recent Sales End -->
 
@@ -178,18 +137,71 @@
               <!-- Widgets End -->
 
 
+<!-- 
+Data Tables code start -->
+
+
+    <!-- Template Stylesheet -->
+    <link href="/style.css" rel="stylesheet">
+        <!-- Google Web Fonts -->
+    
+    
+    
+    <table id="example" class="table table-striped" style="width:100%">
+        <thead>
+            <tr class="text-dark">
+                <th scope="col">Sr.</th>
+                <th scope="col">Ticket Title</th>
+                <th scope="col">Date</th>
+                <th scope="col">Campaign names</th>
+                <th scope="col">Status</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+         
+
+            <% let counter=1%>
+            <%   if(tickets.length) {%>
+            <%tickets.forEach(function(ticket){%>
+
+
+                <tr>
+                    <td><%=counter%></td>
+                    <td><%=ticket.ticketTitle%></td>
+                    <td><%= ticket.raisedDate.getDate()%>-<%=ticket.raisedDate.getMonth() +1%>-<%=ticket.raisedDate.getFullYear()%></td>
+                    <td><%=ticket.cName%></td>
+                    <td><%=ticket.ticketStatus%></td>
+                    <td><a class="btn btn-sm btn-primary" href="/view-ticket-details/<%=ticket._id%>">View Details</a></td>
+                </tr>
+                <%counter++%>
+            <%})%>
+            <%    } %>
+            </tr>
+        </tfoot>
+    </tbody>
+    </table>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="/main-bundled.js"></script>
+<!-- 
+Data Tables code end -->
+
+
+
+
             <!-- Footer Start -->
             <div class="container-fluid pt-3 px-3">
                 <div class="bg-light rounded-top p-4">
                     <div class="row">
                         <div class="col-12 col-sm-6 text-center text-sm-start">
-                            &copy; <a href="#">Your Site Name</a>, All Right Reserved. 
+                            &copy; <a href="#">TheCrazyEntrepreneur</a>, All Right Reserved. 
                         </div>
                         <div class="col-12 col-sm-6 text-center text-sm-end">
                             <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-                            Designed By <a href="https://htmlcodex.com">HTML Codex</a>
+                            Designed By <a>Sharp Coders</a>
                         </br>
-                        Distributed By <a class="border-bottom" href="https://themewagon.com" target="_blank">ThemeWagon</a>
                         </div>
                     </div>
                 </div>
@@ -214,8 +226,16 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css.css">
+ <script src="js/main.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+
+
     <!-- Template Javascript -->
-    <script src="js/main.js"></script>
+    <script src="/main-bundled.js"></script>
 </body>
 
 </html>

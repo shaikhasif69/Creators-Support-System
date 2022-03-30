@@ -1,4 +1,5 @@
 const bcrypt = require("bcryptjs")
+const { ObjectID } = require("mongodb")
 const influencersCollection = require('../db').db().collection("influencers")
 const validator = require("validator")
 
@@ -93,4 +94,9 @@ Influencer.prototype.cleanUp = function() {
     })
   }
 
+
+  Influencer.prototype.getInfluById = async function (influencerId){
+    let influencer = await  influencersCollection.findOne({_id: new ObjectID(influencerId)})
+    return influencer
+  }
 module.exports = Influencer
